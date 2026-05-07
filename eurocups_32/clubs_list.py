@@ -47,9 +47,96 @@ import leagues.ukrainian_league as ukrainian_league
 leagues = pd.DataFrame()
 league_1 = albanian_league.df[['Клубы', "Евроочки"]]
 league_2 = armenian_league.df[['Клубы', "Евроочки"]]
+league_3 = austrian_league.df[['Клубы', "Евроочки"]]
+league_4 = azerbaijanian_league.df[['Клубы', "Евроочки"]]
+league_5 = belarussian_league.df[['Клубы', "Евроочки"]]
+league_6 = belgian_league.df[['Клубы', "Евроочки"]]
+league_7 = bosnian_league.df[['Клубы', "Евроочки"]]
+league_8 = bulgarian_league.df[['Клубы', "Евроочки"]]
+league_9 = croatian_league.df[['Клубы', "Евроочки"]]
+league_10 = cypriot_league.df[['Клубы', "Евроочки"]]
+league_11 = czech_league.df[['Клубы', "Евроочки"]]
+league_12 = danish_league.df[['Клубы', "Евроочки"]]
+league_13 = deutch_league.df[['Клубы', "Евроочки"]]
+league_14 = dutch_league.df[['Клубы', "Евроочки"]]
+league_15 = english_league.df[['Клубы', "Евроочки"]]
+league_16 = estonian_league.df[['Клубы', "Евроочки"]]
+league_17 = faroe_league.df[['Клубы', "Евроочки"]]
+league_18 = finnish_league.df[['Клубы', "Евроочки"]]
+league_19 = french_league.df[['Клубы', "Евроочки"]]
+league_20 = georgian_league.df[['Клубы', "Евроочки"]]
+league_21 = greek_league.df[['Клубы', "Евроочки"]]
+league_22 = hungarian_league.df[['Клубы', "Евроочки"]]
+league_23 = irish_league.df[['Клубы', "Евроочки"]]
+league_24 = islandian_league.df[['Клубы', "Евроочки"]]
+league_25 = italian_league.df[['Клубы', "Евроочки"]]
+league_26 = jewish_league.df[['Клубы', "Евроочки"]]
+league_27 = kazakh_league.df[['Клубы', "Евроочки"]]
+league_28 = kosovar_league.df[['Клубы', "Евроочки"]]
+league_29 = makedonian_league.df[['Клубы', "Евроочки"]]
+league_30 = moldovan_league.df[['Клубы', "Евроочки"]]
+league_31 = montenegrin_league.df[['Клубы', "Евроочки"]]
+league_32 = norwegian_league.df[['Клубы', "Евроочки"]]
+league_33 = polish_league.df[['Клубы', "Евроочки"]]
+league_34 = portugese_league.df[['Клубы', "Евроочки"]]
+league_35 = romanian_league.df[['Клубы', "Евроочки"]]
+league_36 = russian_league.df[['Клубы', "Евроочки"]]
+league_37 = scottish_league.df[['Клубы', "Евроочки"]]
+league_38 = serbian_league.df[['Клубы', "Евроочки"]]
+league_39 = slovakian_league.df[['Клубы', "Евроочки"]]
+league_40 = slovenian_league.df[['Клубы', "Евроочки"]]
+league_41 = spanish_league.df[['Клубы', "Евроочки"]]
+league_42 = sweden_league.df[['Клубы', "Евроочки"]]
+league_43 = swiss_league.df[['Клубы', "Евроочки"]]
+league_44 = turkish_league.df[['Клубы', "Евроочки"]]
+league_45 = ukrainian_league.df[['Клубы', "Евроочки"]]
 leagues = pd.concat([leagues, league_1], ignore_index=True)
 leagues = pd.concat([leagues, league_2], ignore_index=True)
-leagues = leagues.sort_values(by='Евроочки', ascending=False)
+leagues = pd.concat([leagues, league_3], ignore_index=True)
+leagues = pd.concat([leagues, league_4], ignore_index=True)
+leagues = pd.concat([leagues, league_5], ignore_index=True)
+leagues = pd.concat([leagues, league_6], ignore_index=True)
+leagues = pd.concat([leagues, league_7], ignore_index=True)
+leagues = pd.concat([leagues, league_8], ignore_index=True)
+leagues = pd.concat([leagues, league_9], ignore_index=True)
+leagues = pd.concat([leagues, league_10], ignore_index=True)
+leagues = pd.concat([leagues, league_11], ignore_index=True)
+leagues = pd.concat([leagues, league_12], ignore_index=True)
+leagues = pd.concat([leagues, league_13], ignore_index=True)
+leagues = pd.concat([leagues, league_14], ignore_index=True)
+leagues = pd.concat([leagues, league_15], ignore_index=True)
+leagues = pd.concat([leagues, league_16], ignore_index=True)
+leagues = pd.concat([leagues, league_17], ignore_index=True)
+leagues = pd.concat([leagues, league_18], ignore_index=True)
+leagues = pd.concat([leagues, league_19], ignore_index=True)
+leagues = pd.concat([leagues, league_20], ignore_index=True)
+leagues = pd.concat([leagues, league_21], ignore_index=True)
+leagues = pd.concat([leagues, league_22], ignore_index=True)
+leagues = pd.concat([leagues, league_23], ignore_index=True)
+leagues = pd.concat([leagues, league_24], ignore_index=True)
+leagues = pd.concat([leagues, league_25], ignore_index=True)
+leagues = pd.concat([leagues, league_26], ignore_index=True)
+leagues = pd.concat([leagues, league_27], ignore_index=True)
+leagues = pd.concat([leagues, league_28], ignore_index=True)
+leagues = pd.concat([leagues, league_29], ignore_index=True)
+leagues = pd.concat([leagues, league_30], ignore_index=True)
+leagues = pd.concat([leagues, league_31], ignore_index=True)
+leagues = pd.concat([leagues, league_32], ignore_index=True)
+leagues = pd.concat([leagues, league_33], ignore_index=True)
+leagues = pd.concat([leagues, league_34], ignore_index=True)
+leagues = pd.concat([leagues, league_35], ignore_index=True)
+leagues = pd.concat([leagues, league_36], ignore_index=True)
+leagues = pd.concat([leagues, league_37], ignore_index=True)
+leagues = pd.concat([leagues, league_38], ignore_index=True)
+leagues = pd.concat([leagues, league_39], ignore_index=True)
+leagues = pd.concat([leagues, league_40], ignore_index=True)
+leagues = pd.concat([leagues, league_41], ignore_index=True)
+leagues = pd.concat([leagues, league_42], ignore_index=True)
+leagues = pd.concat([leagues, league_43], ignore_index=True)
+leagues = pd.concat([leagues, league_44], ignore_index=True)
+leagues = pd.concat([leagues, league_45], ignore_index=True)
+leagues["Евроочки"] = leagues["Евроочки"].astype(int)
+leagues = leagues.sort_values(by=['Евроочки', 'Клубы'], ascending=False)
 sorted_leagues = pd.DataFrame()
 sorted_leagues = pd.concat([sorted_leagues, leagues], ignore_index=True)
-print(sorted_leagues)
+print(sorted_leagues.to_string())
