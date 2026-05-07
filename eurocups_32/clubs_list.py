@@ -90,6 +90,15 @@ league_42 = sweden_league.df[['Клубы', "Евроочки"]]
 league_43 = swiss_league.df[['Клубы', "Евроочки"]]
 league_44 = turkish_league.df[['Клубы', "Евроочки"]]
 league_45 = ukrainian_league.df[['Клубы', "Евроочки"]]
+bonus_clubs = {
+    'Клубы': ["Вадуц", "Жальгирис", "Ларн",
+               "Линкольн Ред Импс", "Ауда", "Виртус", 
+               "Интер Эскальдес", "Расинг Юнион", "Хамрун Спартанс"],
+    "Евроочки": ["8500", "12000", "9000", 
+                 "13500", "4500", "4000", 
+                 "7500", "3500", "8000"],
+}
+bonus_league = pd.DataFrame(bonus_clubs)
 leagues = pd.concat([leagues, league_1], ignore_index=True)
 leagues = pd.concat([leagues, league_2], ignore_index=True)
 leagues = pd.concat([leagues, league_3], ignore_index=True)
@@ -135,6 +144,7 @@ leagues = pd.concat([leagues, league_42], ignore_index=True)
 leagues = pd.concat([leagues, league_43], ignore_index=True)
 leagues = pd.concat([leagues, league_44], ignore_index=True)
 leagues = pd.concat([leagues, league_45], ignore_index=True)
+leagues = pd.concat([leagues, bonus_league], ignore_index=True)
 leagues["Евроочки"] = leagues["Евроочки"].astype(int)
 leagues = leagues.sort_values(by=['Евроочки', 'Клубы'], ascending=False)
 sorted_leagues = pd.DataFrame()
