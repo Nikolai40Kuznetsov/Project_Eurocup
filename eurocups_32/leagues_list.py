@@ -16,4 +16,11 @@ df['Баллы квалификации'] = df['Баллы квалификац�
 df = df.sort_values(by=['Баллы квалификации', 'Страны'], ascending=False)
 sorted_leagues = pd.DataFrame()
 sorted_leagues = pd.concat([sorted_leagues, df], ignore_index=True)
-print(sorted_leagues.to_string())
+def print_leagues():
+    print(sorted_leagues.to_string())
+def return_nation_power(club):
+    i = 0
+    while i < len(df["Страны"]):
+        if club[2] == df["Страны"][i]:
+            return(df['Баллы квалификации'][i])
+        i += 1
