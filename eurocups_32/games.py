@@ -1,33 +1,39 @@
 import random as ran
+import leagues_list as l_l
 
 def bonus_power(club):
-    if int(club[1]) == 0: # новичок
+    power_number = int(club[1])
+    if club[0] == "Теута":
+        nation_power = l_l.return_nation_power(club)
+        if int(club[1]) < nation_power:
+            power_number = nation_power            
+    if power_number == 0: # новичок
         if club[0] == "МЛ Витебск":
             return 4           
         else:
             return 0
-    if int(club[1]) > 0 and int(club[1]) < 2000: # первый раунд
+    if power_number > 0 and power_number < 2000: # первый раунд
         return 1
-    if int(club[1]) >= 2000 and int(club[1]) < 7000: # второй раунд
+    if power_number >= 2000 and power_number < 7000: # второй раунд
         if club[0] == "Динамо Минск" or club[0] == "БАТЭ":
             return 4            
         else:
             return 2
-    if int(club[1]) >= 7000 and int(club[1]) < 12000: # третий раунд
+    if power_number >= 7000 and power_number < 12000: # третий раунд
         return 3
-    if int(club[1]) >= 12000 and int(club[1]) < 17000: # раунд плей-офф
+    if power_number >= 12000 and power_number < 17000: # раунд плей-офф
         return 4
-    if int(club[1]) >= 17000 and int(club[1]) < 22000: # групповая стадия
+    if power_number >= 17000 and power_number < 22000: # групповая стадия
         return 5
-    if int(club[1]) >= 22000 and int(club[1]) < 27000: # стыки
+    if power_number >= 22000 and power_number < 27000: # стыки
         return 6
-    if int(club[1]) >= 27000 and int(club[1]) < 37000: # боец
+    if power_number >= 27000 and power_number < 37000: # боец
         return 7
-    if int(club[1]) >= 37000 and int(club[1]) < 47000: # претендент
+    if power_number >= 37000 and power_number < 47000: # претендент
         return 8
-    if int(club[1]) >= 47000 and int(club[1]) < 65000: # топ
+    if power_number >= 47000 and power_number < 65000: # топ
         return 9
-    if int(club[1]) >= 65000: # гранд
+    if power_number >= 65000: # гранд
         return 10
 
 def group_shuffle(array):
