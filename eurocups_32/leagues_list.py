@@ -24,3 +24,4 @@ def return_nation_power(club):
         if club[2] == df["Страны"][i]:
             return(df['Баллы квалификации'][i])
         i += 1
+    return 0

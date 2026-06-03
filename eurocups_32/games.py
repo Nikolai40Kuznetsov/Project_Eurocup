@@ -3,22 +3,17 @@ import leagues_list as l_l
 
 def bonus_power(club):
     power_number = int(club[1])
-    if club[0] == "Теута":
-        nation_power = l_l.return_nation_power(club)
-        if int(club[1]) < nation_power:
-            power_number = nation_power            
+    nation_power = l_l.return_nation_power(club)
+    if int(club[1]) < nation_power:
+        power_number = nation_power
+    if club[2] == "Беларусь":
+        power_number += 7500           
     if power_number == 0: # новичок
-        if club[0] == "МЛ Витебск":
-            return 4           
-        else:
-            return 0
+        return 0
     if power_number > 0 and power_number < 2000: # первый раунд
         return 1
     if power_number >= 2000 and power_number < 7000: # второй раунд
-        if club[0] == "Динамо Минск" or club[0] == "БАТЭ":
-            return 4            
-        else:
-            return 2
+        return 2
     if power_number >= 7000 and power_number < 12000: # третий раунд
         return 3
     if power_number >= 12000 and power_number < 17000: # раунд плей-офф
@@ -139,7 +134,7 @@ def play_league(circles, league_size, clubs_data):
         club = 0
         enemy = 1
 
-def play_cup(league_size, clubs_data):
+def play_cup(league_size, clubs_data, league_name):
     results = []
     pulls = 0
     while pulls < league_size:
@@ -152,5 +147,5 @@ def play_cup(league_size, clubs_data):
         if results[searcher] >= results[cup_winner]:
             cup_winner = searcher
         searcher += 1
-    cup_winner_name = clubs_data["Клубы"][cup_winner], clubs_data["Евроочки"][cup_winner]
+    cup_winner_name = clubs_data["Клубы"][cup_winner], clubs_data["Евроочки"][cup_winner], league_name
     return cup_winner_name    

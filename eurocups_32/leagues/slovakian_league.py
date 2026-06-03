@@ -28,11 +28,8 @@ df = df.sort_values(
 df = df.reset_index(drop=True)
 df['Место'] = df.index + 1
 # print(df)
-cup_winner = games.play_cup(12, slovakian_league)
+cup_winner = games.play_cup(12, slovakian_league, "Словакия")
 def champions_qual():
-    return df['Клубы'][0], df["Евроочки"][0]
-def europe_qual():
-    global cup_winner
-    if cup_winner == (df['Клубы'][0], df["Евроочки"][0]) or cup_winner == (df['Клубы'][1], df["Евроочки"][1]):
-        cup_winner = df['Клубы'][1], df["Евроочки"][1] 
-    return cup_winner
+    return df['Клубы'][0], df["Евроочки"][0], "Словакия"
+def conference_qual():
+    return df['Клубы'][0], df["Евроочки"][0], "Словакия"

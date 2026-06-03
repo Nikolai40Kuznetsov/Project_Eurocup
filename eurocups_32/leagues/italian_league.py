@@ -31,24 +31,24 @@ df = df.sort_values(
 df = df.reset_index(drop=True)
 df['Место'] = df.index + 1
 # print(df)
-cup_winner = games.play_cup(20, italian_league)
+cup_winner = games.play_cup(20, italian_league, "Италия")
 def champions_qual_1():
-    return df['Клубы'][0], df["Евроочки"][0]
+    return df['Клубы'][0], df["Евроочки"][0], "Италия"
 def champions_qual_2():
-    return df['Клубы'][1], df["Евроочки"][1]
+    return df['Клубы'][1], df["Евроочки"][1], "Италия"
 def champions_qual_3():
-    return df['Клубы'][2], df["Евроочки"][2]
+    return df['Клубы'][2], df["Евроочки"][2], "Италия"
 def champions_qual_4():
-    return df['Клубы'][3], df["Евроочки"][3]
+    return df['Клубы'][3], df["Евроочки"][3], "Италия"
 def europe_qual():
-    return df['Клубы'][4], df["Евроочки"][4]
+    return df['Клубы'][4], df["Евроочки"][4], "Италия"
 def europe_qual_cup():
     global cup_winner
-    if cup_winner == (df['Клубы'][0], df["Евроочки"][0]) or cup_winner == (df['Клубы'][1], df["Евроочки"][1]) or cup_winner == (df['Клубы'][2], df["Евроочки"][2]) or cup_winner == (df['Клубы'][3], df["Евроочки"][3]) or cup_winner == (df['Клубы'][4], df["Евроочки"][4]) or cup_winner == (df['Клубы'][5], df["Евроочки"][5]):
-        cup_winner = df['Клубы'][5], df["Евроочки"][5] 
+    if cup_winner == (df['Клубы'][0], df["Евроочки"][0], "Италия") or cup_winner == (df['Клубы'][1], df["Евроочки"][1], "Италия") or cup_winner == (df['Клубы'][2], df["Евроочки"][2], "Италия") or cup_winner == (df['Клубы'][3], df["Евроочки"][3], "Италия") or cup_winner == (df['Клубы'][4], df["Евроочки"][4], "Италия") or cup_winner == (df['Клубы'][5], df["Евроочки"][5], "Италия"):
+        cup_winner = df['Клубы'][5], df["Евроочки"][5], "Италия"
     return cup_winner
 def conference_qual():
-    if europe_qual_cup() == (df['Клубы'][5], df["Евроочки"][5]):
-        return df['Клубы'][6], df["Евроочки"][6]
+    if europe_qual_cup() == (df['Клубы'][5], df["Евроочки"][5], "Италия"):
+        return df['Клубы'][6], df["Евроочки"][6], "Италия"
     else:
-        return df['Клубы'][5], df["Евроочки"][5]
+        return df['Клубы'][5], df["Евроочки"][5], "Италия"

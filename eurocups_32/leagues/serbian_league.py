@@ -28,10 +28,10 @@ df = df.sort_values(
 df = df.reset_index(drop=True)
 df['Место'] = df.index + 1
 # print(df)
-cup_winner = games.play_cup(16, serbian_league)
+cup_winner = games.play_cup(16, serbian_league, "Сербия")
 def champions_qual():
-    return df['Клубы'][0], df["Евроочки"][0]
-def conference_qual_1():
-    return df['Клубы'][1], df["Евроочки"][1]
-def conference_qual_2():
-    return df['Клубы'][2], df["Евроочки"][2]
+    return df['Клубы'][0], df["Евроочки"][0], "Сербия"
+def europe_qual():
+    return df['Клубы'][1], df["Евроочки"][1], "Сербия"
+def conference_qual():
+    return df['Клубы'][2], df["Евроочки"][2], "Сербия"

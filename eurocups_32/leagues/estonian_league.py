@@ -5,7 +5,7 @@ estonian_league = {
               "Пярну Вапрус", "Курессааре", "Пайде", "Таммека", "Харью"],
     'Евроочки': ["10000", "7500", "1000", "1000", "1500",
                  "0", "0", "0", "7500", "0"], 
-    'Очки силы': [10, 8, 6, 4, 5,
+    'Очки силы': [10, 10, 6, 4, 5,
                   3, 3, 7, 5, 2],
     'Игры': [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
     'Победы': [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
@@ -25,6 +25,9 @@ df = df.sort_values(
 df = df.reset_index(drop=True)
 df['Место'] = df.index + 1
 # print(df)
-cup_winner = games.play_cup(10, estonian_league)
+cup_winner = games.play_cup(10, estonian_league, "Эстония")
 def champions_qual():
-    return df['Клубы'][0], df["Евроочки"][0]
+    return df['Клубы'][0], df["Евроочки"][0], "Эстония"
+def conference_qual():
+    return df['Клубы'][1], df["Евроочки"][1], "Эстония"
+
