@@ -7,7 +7,11 @@ def bonus_power(club):
     if int(club[1]) < nation_power:
         power_number = nation_power
     if club[2] == "Беларусь":
-        power_number += 7500           
+        power_number += 7500 
+    if club[0] == "Комо" or club[0] == "Болонья" or club[0] == "Хоффенхайм":
+        power_number = 30000     
+    if club[0] == "Кайрат":
+        power_number = 20000   
     if power_number == 0: # новичок
         return 0
     if power_number > 0 and power_number < 2000: # первый раунд
