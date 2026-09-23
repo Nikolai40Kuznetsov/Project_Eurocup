@@ -32,17 +32,6 @@ cup_winner = games.play_cup(16, ukrainian_league, "Украина")
 def champions_qual():
     return df['Клубы'][0], df["Евроочки"][0], "Украина"
 def europe_qual():
-    global cup_winner
-    if cup_winner == (df['Клубы'][0], df["Евроочки"][0], "Украина") or cup_winner == (df['Клубы'][1], df["Евроочки"][1], "Украина"):
-        cup_winner = df['Клубы'][1], df["Евроочки"][1], "Украина"
-    return cup_winner
-def conference_qual_1():
-    if cup_winner == (df['Клубы'][1], df["Евроочки"][1], "Украина"):
-        return df['Клубы'][2], df["Евроочки"][2], "Украина"
-    else:
-        return df['Клубы'][1], df["Евроочки"][1], "Украина"
-def conference_qual_2():
-    if conference_qual_1() == (df['Клубы'][2], df["Евроочки"][2], "Украина"):
-        return df['Клубы'][3], df["Евроочки"][3], "Украина"
-    else:
-        return df['Клубы'][2], df["Евроочки"][2], "Украина"
+    return df['Клубы'][1], df["Евроочки"][1], "Украина"
+def conference_qual():
+    return df['Клубы'][2], df["Евроочки"][2], "Украина"
