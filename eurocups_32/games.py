@@ -88,7 +88,16 @@ def eurocup_group_games(array):
             group_data[array_2_2[i]] += 3
         print(f"{club_3} - {club_4} {club_3_score}:{club_4_score}")
         i += 1
-    print(group_data)
+    return group_data
+
+def playoffs_draft(array, positions, path_1, path_2):
+    print(array)
+    positions.sort()
+    print(positions)
+    path_1.append(array[positions[3]])
+    path_2.append(array[positions[2]])
+    print(path_1)
+    print(path_2)
     
 def qual_game(club_1, club_2, win_array, lose_array):
     club_1_score = ran.randint(0, 3) + ran.randint(0, 3) + bonus_power(club_1) + bonus_power(club_1)
