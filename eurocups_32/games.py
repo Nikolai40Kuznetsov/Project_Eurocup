@@ -15,25 +15,27 @@ def bonus_power(club):
     if power_number == 0: # новичок
         return 0
     if power_number > 0 and power_number < 2000: # первый раунд
-        return 1
+        return 0
     if power_number >= 2000 and power_number < 7000: # второй раунд
-        return 2
+        return 0
     if power_number >= 7000 and power_number < 12000: # третий раунд
-        return 3
+        return 1
     if power_number >= 12000 and power_number < 17000: # раунд плей-офф
-        return 4
+        return 1 
     if power_number >= 17000 and power_number < 22000: # групповая стадия
-        return 5
+        return 1 
     if power_number >= 22000 and power_number < 27000: # стыки
-        return 6
+        return 2
     if power_number >= 27000 and power_number < 37000: # боец
-        return 7
+        return 2
     if power_number >= 37000 and power_number < 47000: # претендент
-        return 8
+        return 2 
     if power_number >= 47000 and power_number < 65000: # топ
-        return 9
-    if power_number >= 65000: # гранд
-        return 10
+        return 3
+    if power_number >= 65000 and power_number < 85000: # гранд
+        return 3
+    if power_number >= 85000: # легенда
+        return 3
 
 def group_shuffle(array):
     sorted_teams = sorted(array[:32], key=lambda x: int(x[1]), reverse=True)
@@ -52,15 +54,48 @@ def group_shuffle(array):
     print(f"Группа F: {groups[5][0][0]}, {groups[5][1][0]}, {groups[5][2][0]}, {groups[5][3][0]}")
     print(f"Группа G: {groups[6][0][0]}, {groups[6][1][0]}, {groups[6][2][0]}, {groups[6][3][0]}")
     print(f"Группа H: {groups[7][0][0]}, {groups[7][1][0]}, {groups[7][2][0]}, {groups[7][3][0]}")
+    return groups
 
-# def eurocup_group_game(array):
+def eurocup_group_games(array):
+    array_1_1 = [0, 2, 0, 3, 0, 1]
+    array_1_2 = [1, 0, 3, 0, 2, 0]
+    array_2_1 = [2, 3, 1, 2, 1, 3]
+    array_2_2 = [3, 1, 2, 1, 3, 2]
+    group_data = [0, 0, 0, 0]
+    for i in range(0, 6):
+        club_1 = array[array_1_1[i]]
+        club_2 = array[array_1_2[i]]
+        club_3 = array[array_2_1[i]]
+        club_4 = array[array_2_2[i]]
+        club_1_score = ran.randint(0, 3) + bonus_power(club_1)
+        club_2_score = ran.randint(0, 3) + bonus_power(club_2) 
+        if club_1_score > club_2_score:
+            group_data[array_1_1[i]] += 3
+        if club_1_score == club_2_score:
+            group_data[array_1_1[i]] += 1
+            group_data[array_1_2[i]] += 1
+        if club_1_score < club_2_score:
+            group_data[array_1_2[i]] += 3
+        print(f"{club_1} - {club_2} {club_1_score}:{club_2_score}")
+        club_3_score = ran.randint(0, 3) + bonus_power(club_3)
+        club_4_score = ran.randint(0, 3) + bonus_power(club_4) 
+        if club_3_score > club_4_score:
+            group_data[array_2_1[i]] += 3
+        if club_3_score == club_4_score:
+            group_data[array_2_1[i]] += 1
+            group_data[array_2_2[i]] += 1
+        if club_3_score < club_4_score:
+            group_data[array_2_2[i]] += 3
+        print(f"{club_3} - {club_4} {club_3_score}:{club_4_score}")
+        i += 1
+    print(group_data)
     
 def qual_game(club_1, club_2, win_array, lose_array):
-    club_1_score = ran.randint(0, 5) + bonus_power(club_1)
-    club_2_score = ran.randint(0, 5) + bonus_power(club_2)
+    club_1_score = ran.randint(0, 3) + ran.randint(0, 3) + bonus_power(club_1) + bonus_power(club_1)
+    club_2_score = ran.randint(0, 3) + ran.randint(0, 3) + bonus_power(club_2) + bonus_power(club_2)
     while club_1_score == club_2_score:
-        club_1_score = ran.randint(0, 5) + bonus_power(club_1)
-        club_2_score = ran.randint(0, 5) + bonus_power(club_2)
+        club_1_score = ran.randint(0, 3) + ran.randint(0, 3) + bonus_power(club_1) + bonus_power(club_1)
+        club_2_score = ran.randint(0, 3) + ran.randint(0, 3) + bonus_power(club_2) + bonus_power(club_2)
     if club_1_score > club_2_score:
         win_array.append(club_1)
         lose_array.append(club_2)
@@ -83,8 +118,8 @@ def play_game(club_1, club_2, clubs_data):
     club_1_power = clubs_data['Очки силы'][club_1]
     club_2_power = clubs_data['Очки силы'][club_2]
     diff = club_1_power - club_2_power
-    club_1_score = ran.randint(0, 5) 
-    club_2_score = ran.randint(0, 5) 
+    club_1_score = ran.randint(0, 3) 
+    club_2_score = ran.randint(0, 3) 
     if diff >= 0:
         club_1_score += diff
     else:
