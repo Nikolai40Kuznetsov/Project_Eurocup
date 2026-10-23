@@ -14,28 +14,28 @@ def bonus_power(club):
         power_number = 20000   
     if power_number == 0: # новичок
         return 0
-    if power_number > 0 and power_number < 2000: # первый раунд
-        return 0
-    if power_number >= 2000 and power_number < 7000: # второй раунд
-        return 0
-    if power_number >= 7000 and power_number < 12000: # третий раунд
-        return 1
-    if power_number >= 12000 and power_number < 17000: # раунд плей-офф
-        return 1 
-    if power_number >= 17000 and power_number < 22000: # групповая стадия
-        return 1 
-    if power_number >= 22000 and power_number < 27000: # стыки
-        return 2
-    if power_number >= 27000 and power_number < 37000: # боец
-        return 2
-    if power_number >= 37000 and power_number < 47000: # претендент
-        return 2 
-    if power_number >= 47000 and power_number < 65000: # топ
-        return 3
-    if power_number >= 65000 and power_number < 85000: # гранд
-        return 3
-    if power_number >= 85000: # легенда
-        return 3
+    if power_number > 0 and power_number < 1000: # первый раунд 1000
+        return ran.randint(0, 1)
+    if power_number >= 1000 and power_number < 3000: # второй раунд 2000
+        return ran.randint(0, 2)
+    if power_number >= 3000 and power_number < 6000: # третий раунд 3000
+        return ran.randint(0, 3)
+    if power_number >= 6000 and power_number < 10000: # раунд плей-офф 4000
+        return 1 + ran.randint(0, 2) 
+    if power_number >= 10000 and power_number < 16000: # групповая стадия 6000
+        return 1 + ran.randint(0, 3)
+    if power_number >= 16000 and power_number < 22000: # стыки 8000
+        return 1 + ran.randint(0, 4)
+    if power_number >= 22000 and power_number < 32000: # боец 10000
+        return 2 + ran.randint(0, 2) 
+    if power_number >= 32000 and power_number < 45000: # претендент 13000
+        return 2 + ran.randint(0, 3)
+    if power_number >= 45000 and power_number < 61000: # топ 16000
+        return 2 + ran.randint(0, 4)
+    if power_number >= 61000 and power_number < 81000: # гранд 20000
+        return 3 + ran.randint(0, 2)
+    if power_number >= 81000: # легенда 20000-40000
+        return 3 + ran.randint(0, 3)
 
 def group_shuffle(array):
     sorted_teams = sorted(array[:32], key=lambda x: int(x[1]), reverse=True)
