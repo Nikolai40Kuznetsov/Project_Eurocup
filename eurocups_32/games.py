@@ -1,6 +1,21 @@
 import random as ran
 import leagues_list as l_l
 
+# Метод голов списком
+# a = [0, 0, 0, 1]
+# i = 0
+# while i < 10:
+#     print(ran.choice(a))
+#     i += 1
+first_round_list = [0, 0, 0, 0, 0,
+                    0, 0, 0, 0, 0, 
+                    1, 1, 1, 1, 1,
+                    1, 2, 2, 2, 3]
+second_round_list = [0, 0, 0, 0, 0,
+                     0, 0, 0, 1, 1,
+                     1, 1, 1, 1, 1, 
+                     2, 2, 2, 2, 3]
+
 def bonus_power(club):
     power_number = int(club[1])
     nation_power = l_l.return_nation_power(club)
