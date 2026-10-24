@@ -3,10 +3,8 @@ import leagues_list as l_l
 
 # Метод голов списком
 # a = [0, 0, 0, 1]
-# i = 0
-# while i < 10:
-#     print(ran.choice(a))
-#     i += 1
+# print(ran.choice(a))
+# значение 15 + 3x где x тир
 first_round_list = [0, 0, 0, 0, 0,
                     0, 0, 0, 0, 0, 
                     1, 1, 1, 1, 1,
