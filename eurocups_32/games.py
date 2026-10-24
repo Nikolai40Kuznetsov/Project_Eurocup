@@ -88,16 +88,29 @@ def eurocup_group_games(array):
             group_data[array_2_2[i]] += 3
         print(f"{club_3} - {club_4} {club_3_score}:{club_4_score}")
         i += 1
+    print(group_data)
     return group_data
 
-def playoffs_draft(array, positions, path_1, path_2):
-    print(array)
-    positions.sort()
-    print(positions)
-    path_1.append(array[positions[3]])
-    path_2.append(array[positions[2]])
-    print(path_1)
-    print(path_2)
+def playoffs_draft(array, positions, path_1, path_2, path_3):
+    places_positions = sorted(positions)
+    winner = places_positions[3]
+    runner_up = places_positions[2]
+    dropped = places_positions[1]
+    i = 0
+    while i < 4:
+        if positions[i] == dropped:
+            dropped = i
+            positions[i] = 999
+        if positions[i] == runner_up:
+            runner_up = i
+            positions[i] = 999
+        if positions[i] == winner:
+            winner = i
+            positions[i] = 999
+        i += 1
+    path_1.append(array[winner])
+    path_2.append(array[runner_up])
+    path_3.append(array[dropped])
     
 def qual_game(club_1, club_2, win_array, lose_array):
     club_1_score = ran.randint(0, 3) + ran.randint(0, 3) + bonus_power(club_1) + bonus_power(club_1)
