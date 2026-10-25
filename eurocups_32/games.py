@@ -1,18 +1,42 @@
 import random as ran
 import leagues_list as l_l
 
-# Метод голов списком
-# a = [0, 0, 0, 1]
-# print(ran.choice(a))
-# значение 15 + 3x где x тир
-first_round_list = [0, 0, 0, 0, 0,
-                    0, 0, 0, 0, 0, 
-                    1, 1, 1, 1, 1,
-                    1, 2, 2, 2, 3]
-second_round_list = [0, 0, 0, 0, 0,
-                     0, 0, 0, 1, 1,
-                     1, 1, 1, 1, 1, 
-                     2, 2, 2, 2, 3]
+nowice_list = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 
+               0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+               1, 1, 1, 1, 1, 1, 2, 2, 2, 3]
+first_round_list = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 
+                    0, 0, 0, 0, 0, 0, 0, 0, 1, 1,
+                    1, 1, 1, 1, 2, 2, 2, 2, 3, 3]
+second_round_list = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 
+                     0, 0, 0, 0, 0, 0, 1, 1, 1, 1,
+                     1, 1, 1, 2, 2, 2, 2, 3, 3, 4]
+third_round_list = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 
+                    0, 0, 0, 0, 1, 1, 1, 1, 1, 1,
+                    1, 2, 2, 2, 2, 2, 3, 3, 3, 4]
+playoff_round_list = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 
+                      0, 0, 1, 1, 1, 1, 1, 1, 1, 1,
+                      2, 2, 2, 2, 2, 3, 3, 3, 4, 4]
+group_stage_list = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 
+                    0, 1, 1, 1, 1, 1, 1, 1, 1, 2,
+                    2, 2, 2, 2, 3, 3, 3, 4, 4, 5]
+clashes_list = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 
+                1, 1, 1, 1, 1, 1, 1, 2, 2, 2,
+                2, 2, 2, 3, 3, 3, 4, 4, 4, 5]
+warriors_list = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 
+                 1, 1, 1, 1, 1, 1, 2, 2, 2, 2,
+                 2, 3, 3, 3, 3, 4, 4, 4, 5, 5]
+pretenders_list = [0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 
+                   1, 1, 1, 1, 2, 2, 2, 2, 2, 2,
+                   3, 3, 3, 3, 3, 4, 4, 4, 5, 5]
+tops_list = [0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 
+             1, 1, 1, 1, 2, 2, 2, 2, 2, 2,
+             3, 3, 3, 3, 4, 4, 4, 5, 5, 6]
+grands_list = [0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 
+               1, 1, 2, 2, 2, 2, 2, 2, 2, 3,
+               3, 3, 3, 3, 4, 4, 4, 5, 5, 6]
+legends_list = [0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 
+                1, 1, 2, 2, 2, 2, 2, 2, 3, 3,
+                3, 3, 3, 4, 4, 4, 5, 5, 6, 7]
 
 def bonus_power(club):
     power_number = int(club[1])
@@ -26,29 +50,29 @@ def bonus_power(club):
     if club[0] == "Кайрат":
         power_number = 20000   
     if power_number == 0: # новичок
-        return 0
+        return ran.choice(nowice_list)
     if power_number > 0 and power_number < 1000: # первый раунд 1000
-        return ran.randint(0, 1)
+        return ran.choice(first_round_list)
     if power_number >= 1000 and power_number < 3000: # второй раунд 2000
-        return ran.randint(0, 2)
+        return ran.choice(second_round_list)
     if power_number >= 3000 and power_number < 6000: # третий раунд 3000
-        return ran.randint(0, 3)
+        return ran.choice(third_round_list)
     if power_number >= 6000 and power_number < 10000: # раунд плей-офф 4000
-        return 1 + ran.randint(0, 2) 
+        return ran.choice(playoff_round_list)
     if power_number >= 10000 and power_number < 16000: # групповая стадия 6000
-        return 1 + ran.randint(0, 3)
+        return ran.choice(group_stage_list)
     if power_number >= 16000 and power_number < 22000: # стыки 8000
-        return 1 + ran.randint(0, 4)
+        return ran.choice(clashes_list)
     if power_number >= 22000 and power_number < 32000: # боец 10000
-        return 2 + ran.randint(0, 2) 
+        return ran.choice(warriors_list)
     if power_number >= 32000 and power_number < 45000: # претендент 13000
-        return 2 + ran.randint(0, 3)
+        return ran.choice(pretenders_list)
     if power_number >= 45000 and power_number < 61000: # топ 16000
-        return 2 + ran.randint(0, 4)
+        return ran.choice(tops_list)
     if power_number >= 61000 and power_number < 81000: # гранд 20000
-        return 3 + ran.randint(0, 2)
+        return ran.choice(grands_list)
     if power_number >= 81000: # легенда 20000-40000
-        return 3 + ran.randint(0, 3)
+        return ran.choice(legends_list)
 
 def group_shuffle(array):
     sorted_teams = sorted(array[:32], key=lambda x: int(x[1]), reverse=True)
