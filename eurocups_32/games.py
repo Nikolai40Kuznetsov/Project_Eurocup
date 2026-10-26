@@ -1,41 +1,41 @@
 import random as ran
 import leagues_list as l_l
-
+# 10 + 5x
 nowice_list = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 
                0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-               1, 1, 1, 1, 1, 1, 2, 2, 2, 3]
+               0, 0, 1, 1, 1, 1, 1, 1, 2, 2] 
 first_round_list = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 
-                    0, 0, 0, 0, 0, 0, 0, 0, 1, 1,
-                    1, 1, 1, 1, 2, 2, 2, 2, 3, 3]
+                    0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+                    1, 1, 1, 1, 1, 1, 2, 2, 2, 3] 
 second_round_list = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 
-                     0, 0, 0, 0, 0, 0, 1, 1, 1, 1,
-                     1, 1, 1, 2, 2, 2, 2, 3, 3, 4]
+                     0, 0, 0, 0, 0, 0, 0, 0, 1, 1,
+                     1, 1, 1, 1, 2, 2, 2, 2, 3, 3]
 third_round_list = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 
-                    0, 0, 0, 0, 1, 1, 1, 1, 1, 1,
-                    1, 2, 2, 2, 2, 2, 3, 3, 3, 4]
+                    0, 0, 0, 0, 0, 0, 1, 1, 1, 1,
+                    1, 1, 2, 2, 2, 2, 2, 3, 3, 3]
 playoff_round_list = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 
                       0, 0, 1, 1, 1, 1, 1, 1, 1, 1,
-                      2, 2, 2, 2, 2, 3, 3, 3, 4, 4]
-group_stage_list = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 
-                    0, 1, 1, 1, 1, 1, 1, 1, 1, 2,
-                    2, 2, 2, 2, 3, 3, 3, 4, 4, 5]
-clashes_list = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 
-                1, 1, 1, 1, 1, 1, 1, 2, 2, 2,
-                2, 2, 2, 3, 3, 3, 4, 4, 4, 5]
-warriors_list = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 
-                 1, 1, 1, 1, 1, 1, 2, 2, 2, 2,
-                 2, 3, 3, 3, 3, 4, 4, 4, 5, 5]
-pretenders_list = [0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 
-                   1, 1, 1, 1, 2, 2, 2, 2, 2, 2,
-                   3, 3, 3, 3, 3, 4, 4, 4, 5, 5]
+                      1, 1, 2, 2, 2, 2, 2, 3, 3, 4]
+group_stage_list = [0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 
+                    1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+                    1, 2, 2, 2, 2, 2, 3, 3, 3, 4]
+clashes_list = [0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 
+                1, 1, 1, 1, 1, 1, 1, 1, 1, 2,
+                2, 2, 2, 2, 2, 3, 3, 3, 4, 4]
+warriors_list = [0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 
+                 1, 1, 1, 1, 1, 1, 1, 1, 2, 2,
+                 2, 2, 2, 3, 3, 3, 3, 4, 4, 5]
+pretenders_list = [0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 
+                   1, 1, 1, 1, 1, 1, 1, 2, 2, 2,
+                   2, 2, 3, 3, 3, 3, 4, 4, 4, 5]
 tops_list = [0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 
-             1, 1, 1, 1, 2, 2, 2, 2, 2, 2,
-             3, 3, 3, 3, 4, 4, 4, 5, 5, 6]
-grands_list = [0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 
-               1, 1, 2, 2, 2, 2, 2, 2, 2, 3,
+             1, 1, 1, 1, 1, 2, 2, 2, 2, 2,
+             2, 3, 3, 3, 3, 4, 4, 4, 5, 5]
+grands_list = [0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 
+               1, 1, 1, 1, 2, 2, 2, 2, 2, 2,
                3, 3, 3, 3, 4, 4, 4, 5, 5, 6]
-legends_list = [0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 
-                1, 1, 2, 2, 2, 2, 2, 2, 3, 3,
+legends_list = [0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 
+                1, 1, 1, 1, 2, 2, 2, 2, 2, 2,
                 3, 3, 3, 4, 4, 4, 5, 5, 6, 7]
 
 def bonus_power(club):
@@ -104,8 +104,8 @@ def eurocup_group_games(array):
         club_2 = array[array_1_2[i]]
         club_3 = array[array_2_1[i]]
         club_4 = array[array_2_2[i]]
-        club_1_score = ran.randint(0, 3) + bonus_power(club_1)
-        club_2_score = ran.randint(0, 3) + bonus_power(club_2) 
+        club_1_score = bonus_power(club_1)
+        club_2_score = bonus_power(club_2) 
         if club_1_score > club_2_score:
             group_data[array_1_1[i]] += 3
         if club_1_score == club_2_score:
@@ -114,8 +114,8 @@ def eurocup_group_games(array):
         if club_1_score < club_2_score:
             group_data[array_1_2[i]] += 3
         print(f"{club_1} - {club_2} {club_1_score}:{club_2_score}")
-        club_3_score = ran.randint(0, 3) + bonus_power(club_3)
-        club_4_score = ran.randint(0, 3) + bonus_power(club_4) 
+        club_3_score = bonus_power(club_3)
+        club_4_score = bonus_power(club_4) 
         if club_3_score > club_4_score:
             group_data[array_2_1[i]] += 3
         if club_3_score == club_4_score:
@@ -150,11 +150,11 @@ def playoffs_draft(array, positions, path_1, path_2, path_3):
     path_3.append(array[dropped])
     
 def qual_game(club_1, club_2, win_array, lose_array):
-    club_1_score = ran.randint(0, 3) + ran.randint(0, 3) + bonus_power(club_1) + bonus_power(club_1)
-    club_2_score = ran.randint(0, 3) + ran.randint(0, 3) + bonus_power(club_2) + bonus_power(club_2)
+    club_1_score = bonus_power(club_1) + bonus_power(club_1)
+    club_2_score = bonus_power(club_2) + bonus_power(club_2)
     while club_1_score == club_2_score:
-        club_1_score = ran.randint(0, 3) + ran.randint(0, 3) + bonus_power(club_1) + bonus_power(club_1)
-        club_2_score = ran.randint(0, 3) + ran.randint(0, 3) + bonus_power(club_2) + bonus_power(club_2)
+        club_1_score = bonus_power(club_1) + bonus_power(club_1)
+        club_2_score = bonus_power(club_2) + bonus_power(club_2)
     if club_1_score > club_2_score:
         win_array.append(club_1)
         lose_array.append(club_2)
@@ -171,7 +171,6 @@ def qual_tour(array, win_array, lose_array):
         result = qual_game(club_1, club_2, win_array, lose_array)
         print(f"{array[games]} - {array[games + 1]} {result}")
         games += 2
-
     
 def play_game(club_1, club_2, clubs_data):
     club_1_power = clubs_data['Очки силы'][club_1]
