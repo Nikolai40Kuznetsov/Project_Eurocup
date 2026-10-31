@@ -29,20 +29,22 @@ df = df.reset_index(drop=True)
 df['Место'] = df.index + 1
 # print(df)
 cup_winner = games.play_cup(16, czech_league, "Чехия")
-def champions_qual():
+def champions_qual_1():
     return df['Клубы'][0], df["Евроочки"][0], "Чехия"
+def champions_qual_2():
+    return df['Клубы'][1], df["Евроочки"][1], "Чехия"
 def europe_qual():
     global cup_winner
-    if cup_winner == (df['Клубы'][0], df["Евроочки"][0]) or cup_winner == (df['Клубы'][1], df["Евроочки"][1], "Чехия"):
-        cup_winner = df['Клубы'][1], df["Евроочки"][1], "Чехия" 
+    if cup_winner == (df['Клубы'][0], df["Евроочки"][0]) or cup_winner == (df['Клубы'][1], df["Евроочки"][1], "Чехия") or cup_winner == (df['Клубы'][2], df["Евроочки"][2], "Чехия"):
+        cup_winner = df['Клубы'][2], df["Евроочки"][2], "Чехия" 
     return cup_winner
 def conference_qual_1():
-    if cup_winner == (df['Клубы'][1], df["Евроочки"][1], "Чехия"):
-        return df['Клубы'][2], df["Евроочки"][2], "Чехия"
-    else:
-        return df['Клубы'][1], df["Евроочки"][1], "Чехия"
-def conference_qual_2():
-    if conference_qual_1() == (df['Клубы'][2], df["Евроочки"][2], "Чехия"):
+    if cup_winner == (df['Клубы'][2], df["Евроочки"][2], "Чехия"):
         return df['Клубы'][3], df["Евроочки"][3], "Чехия"
     else:
         return df['Клубы'][2], df["Евроочки"][2], "Чехия"
+def conference_qual_2():
+    if conference_qual_1() == (df['Клубы'][3], df["Евроочки"][3], "Чехия"):
+        return df['Клубы'][4], df["Евроочки"][4], "Чехия"
+    else:
+        return df['Клубы'][3], df["Евроочки"][3], "Чехия"

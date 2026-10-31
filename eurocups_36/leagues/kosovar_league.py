@@ -28,7 +28,5 @@ df['Место'] = df.index + 1
 cup_winner = games.play_cup(10, kosovar_league, "Косово")
 def champions_qual():
     return df['Клубы'][0], df["Евроочки"][0], "Косово"
-def europe_qual():
-    return df['Клубы'][1], df["Евроочки"][1], "Косово"
 def conference_qual():
-    return df['Клубы'][2], df["Евроочки"][2], "Косово"
+    return df['Клубы'][1], df["Евроочки"][1], "Косово"
