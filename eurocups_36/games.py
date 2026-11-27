@@ -74,59 +74,160 @@ def bonus_power(club):
     if power_number >= 81000: # легенда 20000-40000
         return ran.choice(legends_list)
 
-def group_shuffle(array):
-    sorted_teams = sorted(array[:32], key=lambda x: int(x[1]), reverse=True)
-    pots = [sorted_teams[i*8:(i+1)*8] for i in range(4)]
-    def draw_team(pot):
-        return pot.pop(ran.randint(0, len(pot) - 1))
-    groups = [[] for _ in range(8)]
-    for i in range(8): 
-        for pot in pots:
-            groups[i].append(draw_team(pot))
-    print(f"Группа А: {groups[0][0][0]}, {groups[0][1][0]}, {groups[0][2][0]}, {groups[0][3][0]}")
-    print(f"Группа B: {groups[1][0][0]}, {groups[1][1][0]}, {groups[1][2][0]}, {groups[1][3][0]}")
-    print(f"Группа C: {groups[2][0][0]}, {groups[2][1][0]}, {groups[2][2][0]}, {groups[2][3][0]}")
-    print(f"Группа D: {groups[3][0][0]}, {groups[3][1][0]}, {groups[3][2][0]}, {groups[3][3][0]}")
-    print(f"Группа E: {groups[4][0][0]}, {groups[4][1][0]}, {groups[4][2][0]}, {groups[4][3][0]}")
-    print(f"Группа F: {groups[5][0][0]}, {groups[5][1][0]}, {groups[5][2][0]}, {groups[5][3][0]}")
-    print(f"Группа G: {groups[6][0][0]}, {groups[6][1][0]}, {groups[6][2][0]}, {groups[6][3][0]}")
-    print(f"Группа H: {groups[7][0][0]}, {groups[7][1][0]}, {groups[7][2][0]}, {groups[7][3][0]}")
-    return groups
+def _make_round(team_count, pot_of, quota, played):
+    for _ in range(400):
+        order = list(range(team_count))
+        ran.shuffle(order)
+        used = set()
+        pairs = []
+        ok = True
+        for t in order:
+            if t in used:
+                continue
+            cands = [u for u in range(team_count)
+                     if u != t and u not in used
+                     and quota[t][pot_of[u]] > 0
+                     and quota[u][pot_of[t]] > 0
+                     and frozenset((t, u)) not in played]
+            if not cands:
+                ok = False
+                break
+            u = ran.choice(cands)
+            pairs.append((t, u))
+            used.add(t)
+            used.add(u)
+        if ok:
+            return pairs
+    return None
 
-def eurocup_group_games(array):
-    array_1_1 = [0, 2, 0, 3, 0, 1]
-    array_1_2 = [1, 0, 3, 0, 2, 0]
-    array_2_1 = [2, 3, 1, 2, 1, 3]
-    array_2_2 = [3, 1, 2, 1, 3, 2]
-    group_data = [0, 0, 0, 0]
-    for i in range(0, 6):
-        club_1 = array[array_1_1[i]]
-        club_2 = array[array_1_2[i]]
-        club_3 = array[array_2_1[i]]
-        club_4 = array[array_2_2[i]]
-        club_1_score = bonus_power(club_1)
-        club_2_score = bonus_power(club_2) 
-        if club_1_score > club_2_score:
-            group_data[array_1_1[i]] += 3
-        if club_1_score == club_2_score:
-            group_data[array_1_1[i]] += 1
-            group_data[array_1_2[i]] += 1
-        if club_1_score < club_2_score:
-            group_data[array_1_2[i]] += 3
-        print(f"{club_1} - {club_2} {club_1_score}:{club_2_score}")
-        club_3_score = bonus_power(club_3)
-        club_4_score = bonus_power(club_4) 
-        if club_3_score > club_4_score:
-            group_data[array_2_1[i]] += 3
-        if club_3_score == club_4_score:
-            group_data[array_2_1[i]] += 1
-            group_data[array_2_2[i]] += 1
-        if club_3_score < club_4_score:
-            group_data[array_2_2[i]] += 3
-        print(f"{club_3} - {club_4} {club_3_score}:{club_4_score}")
-        i += 1
-    print(group_data)
-    return group_data
+def _balance_homes(matches, teams_total, need):
+    home = []
+    for a, b in matches:
+        home.append(a if ran.randint(0, 1) == 0 else b)
+    while True:
+        homes = {}
+        for i in range(len(matches)):
+            homes.setdefault(home[i], []).append(i)
+        surplus = deficit = None
+        for t in range(teams_total):
+            cnt = len(homes.get(t, []))
+            if cnt > need:
+                surplus = t
+            if cnt < need:
+                deficit = t
+        if surplus is None:
+            return home
+        parent = {surplus: None}
+        queue = [surplus]
+        found = False
+        qi = 0
+        while qi < len(queue) and not found:
+            u = queue[qi]
+            qi += 1
+            for i in range(len(matches)):
+                if home[i] == u:
+                    a, b = matches[i]
+                    v = b if a == u else a
+                    if v not in parent:
+                        parent[v] = (u, i)
+                        if v == deficit:
+                            found = True
+                            break
+                        queue.append(v)
+        if not found:
+            return None
+        v = deficit
+        while parent[v] is not None:
+            u, i = parent[v]
+            home[i] = v
+            v = u
+
+def group_shuffle(array, pots_count):
+    teams = sorted(array[:36], key=lambda x: int(x[1]), reverse=True)
+    pot_size = 36 // pots_count
+    pot_of = [i // pot_size for i in range(36)]
+    rounds_count = 8 if pots_count == 4 else 6
+    opp_per_pot = 2 if pots_count == 4 else 1
+    while True:
+        quota = {t: {p: opp_per_pot for p in range(pots_count)} for t in range(36)}
+        played = set()
+        tours = []
+        complete = True
+        for r in range(rounds_count):
+            pairs = _make_round(36, pot_of, quota, played)
+            if pairs is None:
+                complete = False
+                break
+            for t, u in pairs:
+                quota[t][pot_of[u]] -= 1
+                quota[u][pot_of[t]] -= 1
+                played.add(frozenset((t, u)))
+            tours.append(pairs)
+        if complete:
+            break
+    flat = []
+    for r, pairs in enumerate(tours):
+        for h, a in pairs:
+            flat.append((h, a, r))
+    pairs_only = [(h, a) for h, a, r in flat]
+    homes = _balance_homes(pairs_only, 36, len(pairs_only) // 36)
+    result = [[] for _ in range(rounds_count)]
+    for (h, a, r), home in zip(flat, homes):
+        if h == home:
+            result[r].append((h, a))
+        else:
+            result[r].append((a, h))
+    for p in range(pots_count):
+        pot_teams = [teams[i][0] for i in range(36) if pot_of[i] == p]
+        print(f"Корзина {p + 1}: " + ", ".join(pot_teams))
+    return teams, result
+
+
+def eurocup_league_games(teams, tours, direct_list=None, clashes_list=None):
+    n = len(teams)
+    points = [0] * n
+    wins = [0] * n
+    draws = [0] * n
+    losses = [0] * n
+    gf = [0] * n
+    ga = [0] * n
+    for num, tour in enumerate(tours, 1):
+        print(f"Тур {num}:")
+        for h, a in tour:
+            hs = bonus_power(teams[h])
+            a_s = bonus_power(teams[a])
+            print(f"{teams[h][0]} - {teams[a][0]} {hs}:{a_s}")
+            gf[h] += hs
+            ga[h] += a_s
+            gf[a] += a_s
+            ga[a] += hs
+            if hs > a_s:
+                points[h] += 3
+                wins[h] += 1
+                losses[a] += 1
+            elif hs < a_s:
+                points[a] += 3
+                wins[a] += 1
+                losses[h] += 1
+            else:
+                points[h] += 1
+                points[a] += 1
+                draws[h] += 1
+                draws[a] += 1
+    order = sorted(range(n), key=lambda t: (points[t], gf[t] - ga[t], gf[t]), reverse=True)
+    print("Общая таблица:")
+    for place, t in enumerate(order, 1):
+        print(f"{place}. {teams[t][0]} — {points[t]} очк. "
+              f"({wins[t]}-{draws[t]}-{losses[t]}, мячи {gf[t]}:{ga[t]})")
+    if direct_list is not None:
+        for t in order[:8]: 
+            direct_list.append(teams[t])
+    if clashes_list is not None:
+        for k in range(8): 
+            clashes_list.append(teams[order[8 + k]])
+            clashes_list.append(teams[order[23 - k]])
+    return order
+
 
 def playoffs_draft(array, positions, path_1, path_2, path_3):
     places_positions = sorted(positions)

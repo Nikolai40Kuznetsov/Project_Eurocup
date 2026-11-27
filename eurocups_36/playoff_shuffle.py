@@ -1,6 +1,6 @@
 import random as ran
 from games import qual_tour
-from group_shuffle import champions_playoffs_list, europe_playoffs_list, europe_clashes_list, conference_playoffs_list, conference_clashes_list
+from group_shuffle import champions_playoffs_list, champions_clashes_list, europe_playoffs_list, europe_clashes_list, conference_playoffs_list, conference_clashes_list
 champions_quarterfinals = []
 champions_semifinals = []
 champions_final = []
@@ -14,6 +14,9 @@ conference_semifinals = []
 conference_final = []
 conference_winner = []
 dropped = []
+print("Стыки Лиги Чемпионов")
+ran.shuffle(champions_clashes_list)
+qual_tour(champions_clashes_list, champions_playoffs_list, dropped)
 print("1/8 Лиги Чемпионов")
 ran.shuffle(champions_playoffs_list)
 qual_tour(champions_playoffs_list, champions_quarterfinals, dropped)
