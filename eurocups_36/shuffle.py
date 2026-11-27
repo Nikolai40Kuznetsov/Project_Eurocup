@@ -1,5 +1,5 @@
 import random as ran
-from games import qual_tour
+from games import qual_tour, break_nations
 import leagues.albanian_league as albanian_league
 import leagues.armenian_league as armenian_league
 import leagues.austrian_league as austrian_league
@@ -147,7 +147,7 @@ champions_main_round.append(turkish_league.champions_qual_1())
 # Участники первого раунда ЛЕ
 europe_first_round.append(azerbaijanian_league.europe_qual())
 europe_first_round.append(belarussian_league.europe_qual())
-europe_first_round.append(isalndian_league.europe_qual())
+europe_first_round.append(islandian_league.europe_qual())
 europe_first_round.append(kazakh_league.europe_qual())
 europe_first_round.append(moldovan_league.europe_qual())
 europe_first_round.append(slovakian_league.europe_qual())
@@ -257,15 +257,19 @@ conference_fourth_round.append(spanish_league.conference_qual())
 conference_fourth_round.append(turkish_league.conference_qual_1())
 def champions_qual():
     ran.shuffle(champions_first_round)
+    break_nations(champions_first_round)
     print("Результаты первого квалификационного раунда Лиги Чемпионов:")
     qual_tour(champions_first_round, champions_second_round, conference_second_round)
     ran.shuffle(champions_second_round)
+    break_nations(champions_second_round)
     print("Результаты второго квалификационного раунда Лиги Чемпионов:")
     qual_tour(champions_second_round, champions_third_round, europe_third_round)
     ran.shuffle(champions_third_round)
+    break_nations(champions_third_round)
     print("Результаты третьего квалификационного раунда Лиги Чемпионов:")
     qual_tour(champions_third_round, champions_fourth_round, europe_fourth_round)
     ran.shuffle(champions_fourth_round)
+    break_nations(champions_fourth_round)
     print("Результаты квалификационного раунда плей-офф Лиги Чемпионов:")
     qual_tour(champions_fourth_round, champions_main_round, europe_main_round)
     print("Состав группового раунда Лиги Чемпионов:")
@@ -273,15 +277,19 @@ def champions_qual():
     return champions_main_round
 def europe_qual():
     ran.shuffle(europe_first_round)
+    break_nations(europe_first_round)
     print("Результаты первого квалификационного раунда Лиги Европы:")
     qual_tour(europe_first_round, europe_second_round, conference_second_round)
     ran.shuffle(europe_second_round)
+    break_nations(europe_second_round)
     print("Результаты второго квалификационного раунда Лиги Европы:")
     qual_tour(europe_second_round, europe_third_round, conference_third_round)
     ran.shuffle(europe_third_round)
+    break_nations(europe_third_round)
     print("Результаты третьего квалификационного раунда Лиги Европы:")
     qual_tour(europe_third_round, europe_fourth_round, conference_fourth_round)
     ran.shuffle(europe_fourth_round)
+    break_nations(europe_fourth_round)
     print("Результаты квалификационного раунда плей-офф Лиги Европы:")
     qual_tour(europe_fourth_round, europe_main_round, conference_main_round)
     print("Состав группового раунда Лиги Европы:")
@@ -289,15 +297,19 @@ def europe_qual():
     return europe_main_round
 def conference_qual():
     ran.shuffle(conference_first_round)
+    break_nations(conference_first_round)
     print("Результаты первого квалификационного раунда Лиги Конференций:")
     qual_tour(conference_first_round, conference_second_round, off_pull)
     ran.shuffle(conference_second_round)
+    break_nations(conference_second_round)
     print("Результаты второго квалификационного раунда Лиги Конференций:")
     qual_tour(conference_second_round, conference_third_round, off_pull)
     ran.shuffle(conference_third_round)
+    break_nations(conference_third_round)
     print("Результаты третьего квалификационного раунда Лиги Конференций:")
     qual_tour(conference_third_round, conference_fourth_round, off_pull)
     ran.shuffle(conference_fourth_round)
+    break_nations(conference_fourth_round)
     print("Результаты квалификационного раунда плей-офф Лиги Конференций:")
     qual_tour(conference_fourth_round, conference_main_round, off_pull)
     print("Состав группового раунда Лиги Конференций:")

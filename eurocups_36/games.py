@@ -184,6 +184,7 @@ def group_shuffle(array, pots_count):
 
 
 def eurocup_league_games(teams, tours, direct_list=None, clashes_list=None):
+    break_nations(teams)
     n = len(teams)
     points = [0] * n
     wins = [0] * n
@@ -263,6 +264,14 @@ def qual_game(club_1, club_2, win_array, lose_array):
         win_array.append(club_2)
         lose_array.append(club_1)
     return f"{club_1_score}:{club_2_score}"
+
+def break_nations(array):
+    pairs = len(array) / 2
+    i = 0
+    while i < pairs:
+        while array[i][2] == array[i+1][2]:
+            ran.shuffle(array)
+        i += 2
 
 def qual_tour(array, win_array, lose_array):
     games = 0
