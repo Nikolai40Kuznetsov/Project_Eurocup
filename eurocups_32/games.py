@@ -1,6 +1,6 @@
 import random as ran
 import leagues_list as l_l
-# 10 + 5x
+# 10+5x  10-70
 nowice_list = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 
                0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
                0, 0, 1, 1, 1, 1, 1, 1, 2, 2] 
@@ -28,14 +28,17 @@ warriors_list = [0, 0, 0, 0, 0, 0, 0, 0, 1, 1,
 pretenders_list = [0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 
                    1, 1, 1, 1, 1, 1, 1, 2, 2, 2,
                    2, 2, 3, 3, 3, 3, 4, 4, 4, 5]
-tops_list = [0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 
+elite_list = [0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 
              1, 1, 1, 1, 1, 2, 2, 2, 2, 2,
              2, 3, 3, 3, 3, 4, 4, 4, 5, 5]
-grands_list = [0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 
+tops_list = [0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 
                1, 1, 1, 1, 2, 2, 2, 2, 2, 2,
                3, 3, 3, 3, 4, 4, 4, 5, 5, 6]
-legends_list = [0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 
+grands_list = [0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 
                 1, 1, 1, 1, 2, 2, 2, 2, 2, 2,
+                3, 3, 3, 4, 4, 4, 5, 5, 6, 7]
+legends_list = [0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 
+                1, 1, 2, 2, 2, 2, 2, 2, 2, 3,
                 3, 3, 3, 4, 4, 4, 5, 5, 6, 7]
 
 def bonus_power(club):
@@ -59,19 +62,21 @@ def bonus_power(club):
         return ran.choice(third_round_list)
     if power_number >= 6000 and power_number < 10000: # раунд плей-офф 4000
         return ran.choice(playoff_round_list)
-    if power_number >= 10000 and power_number < 16000: # групповая стадия 6000
+    if power_number >= 10000 and power_number < 15000: # групповая стадия 5000
         return ran.choice(group_stage_list)
-    if power_number >= 16000 and power_number < 22000: # стыки 8000
+    if power_number >= 15000 and power_number < 22000: # стыки 7000
         return ran.choice(clashes_list)
-    if power_number >= 22000 and power_number < 32000: # боец 10000
+    if power_number >= 22000 and power_number < 31000: # боец 9000
         return ran.choice(warriors_list)
-    if power_number >= 32000 and power_number < 45000: # претендент 13000
+    if power_number >= 31000 and power_number < 42000: # претендент 11000
         return ran.choice(pretenders_list)
-    if power_number >= 45000 and power_number < 61000: # топ 16000
+    if power_number >= 42000 and power_number < 56000: # элита 14000
+        return ran.choice(elite_list)
+    if power_number >= 56000 and power_number < 73000: # топ 17000
         return ran.choice(tops_list)
-    if power_number >= 61000 and power_number < 81000: # гранд 20000
+    if power_number >= 73000 and power_number < 94000: # гранд 21000
         return ran.choice(grands_list)
-    if power_number >= 81000: # легенда 20000-40000
+    if power_number >= 94000: # легенда 10000-30000
         return ran.choice(legends_list)
 
 def group_shuffle(array):
